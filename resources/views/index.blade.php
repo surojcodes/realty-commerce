@@ -33,11 +33,11 @@
 		</section>
 
 		<section id="content">
-			<div class="content-wrap pt-0 clearfix">
+			<div class="content-wrap pt-0 pb-0 clearfix">
 				<div class="container topmargin-lg bottommargin-lg clearfix">
 					<div class="mx-auto" style="max-width: 960px">
 						<div class="heading-block center border-bottom-0">
-							<h2 class="ls2 fw-bold">Hamro Realty Cash Rebate</h2>
+							<h2 class="ls2 fw-bold"> <span style='border-bottom:5px solid #D90416;color:black' >Hamro Realty </span> <span >Cash Rebate</span></h2>
 						</div>
 						<div class="tabs tabs-alt tabs-responsive tabs-justify clearfix" id="tab">
 							<div class="tab-container">
@@ -51,6 +51,69 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		<div class="pb-5 pt-5" style="background: #eee">
+			<div class="container">
+			<div class="heading-block center border-bottom-0 pb-4" >
+				<h2 class="ls2 fw-bold"><span style='border-bottom:5px solid #D90416;color:black' >Hamro Realty </span>  <span  >  Team</span> </h2>
+			</div>
+			<div class="row col-mb-50 mb-0">
+					<div class="col-lg-6">
+						<div class="team team-list row align-items-center justify-content-center">
+							<div class="team-image col-sm-6 mb-3" style="max-width: 320px">
+								<img src="{{asset('images/prabin.jpg')}}" alt="Prabin Maharjan" class="rounded rounded-circle" >
+							</div>
+							<div class="team-desc col-sm-6">
+								<div class="team-title text-center"><h4>Prabin Maharjan</h4><span>Owner/Broker</span></div>
+								<div class="team-content">
+									<p>Carbon emissions reductions giving, legitimize amplify non-partisan Aga Khan. Policy dialogue assessment expert free-speech cornerstone disruptor freedom. Cesar Chavez empower.</p>
+								</div>
+								<div class="d-flex justify-content-center my-2">
+								<a href="#" class="social-icon si-rounded si-small si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+								<a href="#" class="social-icon si-rounded si-small si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+								<a href="#" class="social-icon si-rounded si-small si-gplus">
+									<i class="icon-gplus"></i>
+									<i class="icon-gplus"></i>
+								</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="team team-list row align-items-center justify-content-center">
+							<div class="team-image col-sm-6 text-center mb-3" style="max-width: 320px">
+								<img src="{{asset('images/suman.jpg')}}" alt="Prabin Maharjan" class=" rounded-circle">
+							</div>
+							<div class="team-desc col-sm-6  ">
+								<div class="team-title text-center"><h4>Suman Shrestha</h4><span>Lead Agent</span></div>
+								<div class="team-content">
+									<p>Carbon emissions reductions giving, legitimize amplify non-partisan Aga Khan. Policy dialogue assessment expert free-speech cornerstone disruptor freedom. Cesar Chavez empower.</p>
+								</div>
+								<div class="d-flex justify-content-center">
+								<a href="#" class="social-icon si-rounded si-small si-facebook">
+									<i class="icon-facebook"></i>
+									<i class="icon-facebook"></i>
+								</a>
+								<a href="#" class="social-icon si-rounded si-small si-twitter">
+									<i class="icon-twitter"></i>
+									<i class="icon-twitter"></i>
+								</a>
+								<a href="#" class="social-icon si-rounded si-small si-gplus">
+									<i class="icon-gplus"></i>
+									<i class="icon-gplus"></i>
+								</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
 				</div>
 			</div>
 		</section>

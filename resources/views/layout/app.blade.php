@@ -56,8 +56,7 @@
 										<li class="menu-item"><a class="menu-link" href="demo-interior-design-studio-single.html"><div>Modern Condo in City</div></a></li>
 									</ul>
 								</li> -->
-								<li class="menu-item"><a class="menu-link" href="/about"><div>About</div></a></li>
-								<!-- <li class="menu-item"><a class="menu-link" href="demo-interior-design-faqs.html"><div>FAQs</div></a></li> -->
+								{{-- <li class="menu-item"><a class="menu-link" href="/about"><div>About</div></a></li> --}}
 								<li class="menu-item"><a class="menu-link" href="/contact"><div>Contact</div></a></li>
                 	
 							</ul>
@@ -71,21 +70,47 @@
 		</header>
 
     @yield('content')
-    
-		<footer id="footer" class="border-0" style="background-color: #F5F5F5;">
-			<div class="container clearfix">
-					<div class="w-100 center m-0 py-3">
-						<span>Copyrights &copy; 2021 Hamro Realty.</span> <br> 
-						<div class="mt-2">
-						<a href="https://drive.google.com/file/d/1VcDEbaq2WF1i3VhjfZqZTRzDN2rsAskV/view" style="color:#aaa"><small>Consumer Complaint Against a License Holder to TREC</small></a>
+
+		<footer id="footer" class="dark" style="border-top:none">
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row justify-content-between col-mb-30">
+						<div class="col-12 col-lg-auto text-center text-lg-start order-last order-lg-first">
+							<span>Dallas, Texas 75063, United States</span> <br>
+							<i class="icon-phone-sign"></i>&nbsp;(469) 688-1640 <br>
+							<i class="icon-email3"></i>&nbsp;info@hamrorealty.com<br> <br>
 						</div>
+
+						<div class="col-12 col-lg-auto text-center text-lg-end">
+							<div class="copyrights-menu copyright-links">
+								<a href="https://drive.google.com/file/d/1VcDEbaq2WF1i3VhjfZqZTRzDN2rsAskV/view" style="color:#aaa"><small>Consumer Complaint Against a License Holder to TREC</small></a>
+							</div>
+							<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+							<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
 						</div>
 					</div>
+					<p class="text-center m-0">
+							Copyrights &copy; 2021 Hamro Realty.
+					</p>
 				</div>
 			</div>
 		</footer>
 
-	</div><!-- #wrapper end -->
+	</div>
 
 	<div id="gotoTop" class="icon-angle-up rounded-circle"></div>
 	<script src="{{asset('js/jquery.js')}}"></script>
