@@ -48,7 +48,7 @@
 						<nav class="primary-menu with-arrows">
 
 							<ul class="menu-container">
-								<li class="menu-item current"><a class="menu-link" href="/"><div>Home</div></a></li>
+								<li  class="{{ (request()->is('/')) ? 'menu-item current' : 'menu-item' }}"><a class="menu-link" href="/"><div>Home</div></a></li>
 								<!-- <li class="menu-item"><a class="menu-link" href="demo-interior-design-studio.html"><div>Studio</div></a>
 									<ul class="sub-menu-container">
 										<li class="menu-item"><a class="menu-link" href="demo-interior-design-studio-single.html"><div>Minsk Belarus Studio</div></a></li>
@@ -57,7 +57,7 @@
 									</ul>
 								</li> -->
 								{{-- <li class="menu-item"><a class="menu-link" href="/about"><div>About</div></a></li> --}}
-								<li class="menu-item"><a class="menu-link" href="/contact"><div>Contact</div></a></li>
+								<li  class="{{ (request()->is('contact')) ? 'menu-item current' : 'menu-item' }}"><a class="menu-link" href="/contact"><div>Contact</div></a></li>
                 	
 							</ul>
 
