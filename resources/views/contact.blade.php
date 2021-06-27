@@ -22,7 +22,7 @@ Contact
 					<div class="row col-mb-50">
 						<div class="col-lg-6">
 							<div class="widget clearfix">
-                <h4>Hamro Realty</h4>
+                <h3 style='color:#d90416;text-transform: uppercase'>Hamro Realty</h3>
 								<div class="py-2" style="background: url('images/world-map.png') no-repeat center center;">
 									<div class="row col-mb-30">
 										<div class="col-6">
