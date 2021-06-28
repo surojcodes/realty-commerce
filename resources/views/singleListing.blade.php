@@ -115,7 +115,10 @@ Single Property
 											<div class="card-header">Go tour this home</div>
 											<div class="card-body">
 												<div class="form-result"></div>
-													<a href="tour.html" class="button  button-rounded w-100 m-0" >Book Tour</a>
+												@php
+													$property =  $data['StreetNumber'].' '.$data['StreetName'].' '.$data['StreetSuffix'].', '. $data['City'].', '. $data['PostalCode'];														
+												@endphp
+													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}" class="button  button-rounded w-100 m-0" >Schedule Tour</a>
                           <p class="mt-3 mb-1" style="font-size: 0.8rem;">Its free, with no obligation - cancel anytime</p>
 											</div>
 										</div>
