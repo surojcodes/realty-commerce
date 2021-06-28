@@ -102,9 +102,7 @@ Single Property
 										<li class="mb-1"><i class="icon-line2-check"></i><strong>Security</strong>: {{$data['SecurityFeatures']==''?'N/A':$data['SecurityFeatures']}}</li>
                     <li class="mb-1"><i class="icon-line2-check"></i><strong>Half Baths</strong>: {{$data['BathsHalf']==''?'N/A':$data['BathsHalf']}}</li>
                     <li class="mb-1"><i class="icon-line2-check"></i><strong>Full Baths</strong>: {{$data['BathsFull']==''?'N/A':$data['BathsFull']}}</li>
-                    <li class="mb-1"><i class="icon-line2-check"></i><strong>Pool Features</strong>: {{$data['LastListPrice']==''?'N/A':$data['LastListPrice']}}</li>
-
-
+                    <li class="mb-1"><i class="icon-line2-check"></i><strong>Last Price</strong>: {{$data['LastListPrice']==''?'N/A':$data['LastListPrice']}}</li>
 									</ul>
 								</div>
 							</div>
