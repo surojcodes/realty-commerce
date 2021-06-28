@@ -23,7 +23,9 @@ class PropertyController extends Controller
         $class = 'Listing';
         $totalMatchedListing=0;
         if(is_numeric($keyword)){
-            $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(POSTALCODE='.$keyword.'),(STATUS=A)');
+            $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(POSTALCODE='.$keyword.'),(STATUS=A)',[
+                'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
+            ]);
             if($results->getReturnedResultsCount()<2){
                   return redirect()->route('index')->with('error','Properties for zip "'.$keyword.'" NOT FOUND!');
             }
@@ -31,7 +33,9 @@ class PropertyController extends Controller
         }else{
            $cityCode = $this->getCityCode($keyword);
             if($cityCode>0){
-                $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(CITY='.$cityCode.'),(STATUS=A)');
+                $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(CITY='.$cityCode.'),(STATUS=A)',[
+                'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
+            ]);
             }else{
                 return redirect()->route('index')->with('error','City "'.$keyword.'" NOT FOUND!');
             }
@@ -54,8 +58,44 @@ class PropertyController extends Controller
         // dd($listings[0]);
         return view('listings',compact('totalMatchedListing','listings','keyword'));
     }
-    private function fieldRename($oldArray)
-    {
+
+    public function singleProperty($id){
+        $resource='Property';
+        $class = 'Listing';
+        $results = $this->rets->Search($resource, $class, '(Matrix_Unique_ID='.$id.')');
+        if($results->getReturnedResultsCount()==0){
+                abort(404);
+        }
+        $data = $this->completeFieldRename($results)[0];
+        $id = $data['Matrix_Unique_ID'];
+        $images = $this->rets->getObject('Property','HighRes',$id,'*',1);
+        $photos =[];
+        foreach($images as $image){
+            array_push($photos,$image->getLocation());
+        }
+        return view('singleListing',compact('data','photos'));
+    }
+    private function fieldRename($oldArray){
+        // For each item in the array rename the keys
+        foreach ($oldArray as $arrayData) {
+            $newArray[] = [
+                'Matrix_Unique_ID'=> $arrayData['Matrix_Unique_ID'],
+                'PhotoCount' => $arrayData['PhotoCount'],
+                'PostalCode' => $arrayData['PostalCode'],
+                'ListPrice' => $arrayData['ListPrice'],
+                "City" =>  $arrayData['City'],
+                "BathsTotal" =>  $arrayData['BathsTotal'],
+                "BedsTotal" =>  $arrayData['BedsTotal'],
+                "LotSizeAreaSQFT" =>  $arrayData['LotSizeAreaSQFT'],
+                "StreetNumber" =>  $arrayData['StreetNumber'],
+                "StreetName" =>  $arrayData['StreetName'],
+                "StreetSuffix" =>  $arrayData['StreetSuffix'],
+                "StateOrProvince" =>  $arrayData['StateOrProvince'],
+            ];
+        }
+        return $newArray;
+    }
+    private function completeFieldRename($oldArray){
         // For each item in the array rename the keys
         foreach ($oldArray as $arrayData) {
             $newArray[] = [
@@ -192,7 +232,6 @@ class PropertyController extends Controller
         }
         return $newArray;
     }
-
     private function getCityCode($cityName){
         $cityCodes=[
             "Abbott"=>1,

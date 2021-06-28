@@ -10,3 +10,4 @@ Route::get('/about', [NavigationController::class,'about']);
 Route::get('/contact', [NavigationController::class,'contact']);
 
 Route::post('/search-results',[PropertyController::class,'searchProperty'])->name('search.property');
+Route::get('/property/{id}',[PropertyController::class,'singleProperty'])->name('property.single');

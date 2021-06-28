@@ -1,8 +1,60 @@
-/* ----------------------------------------------------------------
-	Custom CSS
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 70px, 0);
+        transform: translate3d(0, 70px, 0);
+    }
+}
 
-	Add all your Custom Styled CSS here for New Styles or
-	Overwriting Default Theme Styles for Better Handling Updates
------------------------------------------------------------------*/
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 70px, 0);
+        transform: translate3d(0, 70px, 0);
+    }
+}
 
+.font-secondary {
+    font-family: "Merriweather", serif !important;
+}
+.slider-element .real-estate-info-wrap {
+    position: absolute;
+    left: auto;
+    bottom: 20px;
+    width: 100%;
+}
 
+.real-estate-price {
+    position: absolute;
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 50px;
+    z-index: 1;
+}
+
+.real-estate-price h3 {
+    display: block;
+    color: #fff;
+    font-size: 44px;
+    margin: 0;
+    font-weight: 400;
+}
+
+@media (max-width: 991px) {
+    .real-estate-price {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: 0;
+        margin-top: 15px;
+    }
+
+    .slider-element .heading-block > h2 {
+        font-size: 24px;
+    }
+
+    .slider-element .heading-block {
+        width: auto !important;
+    }
+}

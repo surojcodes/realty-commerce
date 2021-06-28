@@ -25,6 +25,11 @@
 		/>
 		<link
 			rel="stylesheet"
+			href="{{asset('css/rs-icons.css')}}"
+			type="text/css"
+		/>
+		<link
+			rel="stylesheet"
 			href="{{asset('css/animate.css')}}"
 			type="text/css"
 		/>

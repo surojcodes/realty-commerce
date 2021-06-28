@@ -11,7 +11,7 @@ Search Results
       </span>
       <span>{{$keyword}}</span>
     </h2>
-    <small>Total Results:{{$totalMatchedListing}}</small>
+    <small class="mt-2">Total Results:{{$totalMatchedListing}}</small>
 
     <form
       id="widget-subscribe-form"
@@ -30,14 +30,12 @@ Search Results
           style="border: 0; box-shadow: none; overflow: hidden"
           required
         />
-      
         <input
           class="button"
           type="submit"
           style="border-radius: 3px"
           value='Search'
         />
-
       </div>
     </form>
 
@@ -54,7 +52,7 @@ Search Results
           <div class="card-body">
             {{-- <span class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">Premium</span> --}}
             <h4 class="mb-0 h4 fw-semibold">$ {{ number_format($listing['info']['ListPrice'],2)}}</h4>
-            {{-- <p class="mb-4 op-07" style="line-height: 1.65">Competently embrace dynamic intellectual capital.</p> --}}
+            <p class="mb-4 op-07" style="line-height: 1.65">{{$listing['info']['StreetNumber']}} {{$listing['info']['StreetName']}} {{$listing['info']['StreetSuffix']}}, {{$listing['info']['City']}}, {{$listing['info']['PostalCode']}}</p>
             <small class="ls2 fw-bold text-uppercase op-05 mb-2 d-block">Features</small>
             <div class="row g-0 mb-2 clearfix car-features">
               <div class="col-6 mb-2"><i class="icon-bed"></i> {{$listing['info']['BedsTotal']==''?'N/A':$listing['info']['BedsTotal']}}</div>
@@ -62,7 +60,7 @@ Search Results
               <div class="col-12"></i>{{$listing['info']['LotSizeAreaSQFT']==''?'N/A':$listing['info']['LotSizeAreaSQFT']}} Sq. Ft.</div>
             </div>
           </div>
-          <a href="#" class="stretched-link"></a>
+          <a href="{{route('property.single',$listing['info']['Matrix_Unique_ID'])}}" class="stretched-link"></a>
         </div>
       </div>
     @empty
