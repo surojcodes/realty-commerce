@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Mail\NewTourBooking;
 use App\Mail\NewContactEmail;
-
+use App\Mail\BookingConfirmation;
 
 class TourController extends Controller
 {
@@ -26,7 +26,8 @@ class TourController extends Controller
             'property'=>$req->property,
         ];
         Mail::to('tours@hamrorealty.com')->send(new NewTourBooking($data));
-        return redirect()->route('index')->with('success','Tour confirmed! We will contact you shortly..');
+        $this->sendConfirmation($req->email,$data);
+        return redirect()->route('index')->with('success','Tour confirmed! Please check your email for confirmation email.');
     }
     public function contactEmail(Request $req){
         $data = [
@@ -37,5 +38,8 @@ class TourController extends Controller
         ];
         Mail::to('tours@hamrorealty.com')->send(new NewContactEmail($data));
         return redirect()->route('index')->with('success','We heard you! We will contact you shortly');
+    }
+    private function sendConfirmation($email,$data){
+        Mail::to($email)->send(new BookingConfirmation($data));
     }
 }
