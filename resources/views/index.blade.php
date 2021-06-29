@@ -22,7 +22,7 @@
 									0 4px 4px rgba(0, 0, 0, 0.2);
 							"
 						>
-							Hamro Realty
+							<span style='color:#d90416'>Hamro</span> Realty
 						</h1>
 						<p
 							style="
