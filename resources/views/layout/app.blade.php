@@ -62,14 +62,18 @@
 								/></a>
 							</div>
 							<!-- #logo end -->
-										@php $count=count(session('properties')); @endphp
+										@php 
+											if(session('properties')){
+												$count=count(session('properties'));
+											}
+										@endphp
 							<div class="header-misc position-relative mr-sm-3">
 								<a href="/cart" class="text-dark">
 									<i class="icon-shopping-cart1"></i>
 									<span
 										class="badge rounded-pill bg-danger position-absolute"
 										style="top: -12px"
-										><small>{{$count}}</small></span
+										><small>{{$count??0}}</small></span
 									>
 								</a>
 							</div>
