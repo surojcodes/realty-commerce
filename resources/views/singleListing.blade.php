@@ -10,7 +10,7 @@ Single Property
 					<div class="heading-block mb-0 border-bottom-0 d-md-flex d-block align-items-center justify-content-around">
 						<h2 class="text-white"> {{$data['StreetNumber']}} {{$data['StreetName']}} {{$data['StreetSuffix']}}, {{$data['City']}}, {{$data['PostalCode']}}</span></h2>
 						<div class="d-flex flex-shrink-1" data-lightbox="gallery">
-							<a href="{{$photos[3]}}" class="button button-color button-rounded nott m-0 fw-medium align-self-end" data-lightbox="gallery-item"><i class="icon-picture"></i> View Gallery</a>
+							<a href="{{$photos[3]}}" class="button button-color button-rounded nott m-0 fw-medium mx-5" data-lightbox="gallery-item"><i class="icon-picture"></i> View Gallery</a>
 							 @foreach($photos as $photo)
                 <a href="{{$photo}}" class="d-none" data-lightbox="gallery-item"></a>
               @endforeach
@@ -102,7 +102,7 @@ Single Property
 										<li class="mb-1"><i class="icon-line2-check"></i><strong>Security</strong>: {{$data['SecurityFeatures']==''?'N/A':$data['SecurityFeatures']}}</li>
                     <li class="mb-1"><i class="icon-line2-check"></i><strong>Half Baths</strong>: {{$data['BathsHalf']==''?'N/A':$data['BathsHalf']}}</li>
                     <li class="mb-1"><i class="icon-line2-check"></i><strong>Full Baths</strong>: {{$data['BathsFull']==''?'N/A':$data['BathsFull']}}</li>
-                    <li class="mb-1"><i class="icon-line2-check"></i><strong>Last Price</strong>: {{$data['LastListPrice']==''?'N/A':$data['LastListPrice']}}</li>
+                    <li class="mb-1"><i class="icon-line2-check"></i><strong>Last Price</strong>: ${{$data['LastListPrice']==''?'N/A':$data['LastListPrice']}}</li>
 									</ul>
 								</div>
 							</div>
@@ -118,7 +118,7 @@ Single Property
 												@php
 													$property =  $data['StreetNumber'].' '.$data['StreetName'].' '.$data['StreetSuffix'].', '. $data['City'].', '. $data['PostalCode'];														
 												@endphp
-													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}" class="button  button-rounded w-100 m-0" >Schedule Tour</a>
+													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}" class="button  button-rounded w-100 m-0" id="schedule-tour" >Schedule Tour</a>
                           <p class="mt-3 mb-1" style="font-size: 0.8rem;">Its free, with no obligation - cancel anytime</p>
 											</div>
 										</div>
@@ -130,4 +130,13 @@ Single Property
 			</div>
 		</section>
 </div>
+@endsection
+@section('scripts')
+<script>
+	const button = document.querySelector('#schedule-tour');
+	button.addEventListener('click',()=>{
+			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span class="sr-only">Loading...</span>`
+	})
+</script>
 @endsection

@@ -64,14 +64,14 @@
 									style="border: 0; box-shadow: none; overflow: hidden"
 									required
 								/>
-							
-								<input
+								<button
 									class="button"
 									type="submit"
+									id="submit-btn"
 									style="border-radius: 3px"
-									value='Search'
-								/>
-
+								>
+								Search
+							</button>
 							</div>
 						</form>
 				</div>
@@ -212,5 +212,19 @@
 		</div>
 	</div>
 </section>
+
+@endsection
+@section('scripts')
+<script>
+	const button = document.querySelector('#submit-btn');
+	const searchText = document.querySelector('#widget-subscribe-form-email');
+	button.addEventListener('click',()=>{
+		if(searchText.value!==''){
+			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span class="sr-only">Loading...</span>`
+			searchText.setAttribute('readonly',true);
+		}
+	})
+</script>
 
 @endsection

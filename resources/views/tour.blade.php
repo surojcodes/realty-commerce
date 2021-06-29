@@ -142,6 +142,7 @@
 				<button
 					class="button button-rounded button-large m-0"
 					type="submit"
+					id="confirm-tour"
 				>
 					Confirm Tour
 				</button>
@@ -149,4 +150,13 @@
 		</form>
 	</div>
 </div>
+@endsection
+@section('scripts')
+<script>
+	const button = document.querySelector('#confirm-tour');
+	button.addEventListener('click',()=>{
+			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span class="sr-only">Loading...</span>`
+	})
+</script>
 @endsection

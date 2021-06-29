@@ -25,11 +25,6 @@
 		/>
 		<link
 			rel="stylesheet"
-			href="{{asset('css/rs-icons.css')}}"
-			type="text/css"
-		/>
-		<link
-			rel="stylesheet"
 			href="{{asset('css/animate.css')}}"
 			type="text/css"
 		/>
@@ -207,5 +202,6 @@
 		<script src="{{asset('js/jquery.js')}}"></script>
 		<script src="{{asset('js/plugins.min.js')}}"></script>
 		<script src="{{asset('js/functions.js')}}"></script>
+		@yield('scripts')
 	</body>
 </html>

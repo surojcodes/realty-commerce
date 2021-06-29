@@ -55,24 +55,17 @@ Contact
 							<div class="widget quick-contact-widget form-widget clearfix">
 								<h4>Send Message</h4>
 								<div class="form-result"></div>
-								<form id="quick-contact-form" name="quick-contact-form" action="include/form.php" method="post" class="quick-contact-form mb-0">
-									<div class="form-process">
-										<div class="css3-spinner">
-											<div class="css3-spinner-scaler"></div>
-										</div>
-									</div>
+								<form action="#" method="POST" class="mb-0">
 									<div class="input-group mx-auto">
 										<div class="input-group-text"><i class="icon-user"></i></div>
-										<input type="text" class="required form-control" id="quick-contact-form-name" name="quick-contact-form-name" value="" placeholder="Full Name" />
+										<input type="text" class="form-control" placeholder="Full Name" required/>
 									</div>
 									<div class="input-group mx-auto">
 										<div class="input-group-text"><i class="icon-email2"></i></div>
-										<input type="text" class="required form-control email" id="quick-contact-form-email" name="quick-contact-form-email" value="" placeholder="Email Address" />
+										<input type="email" class="form-control"  placeholder="Email Address" required/>
 									</div>
-									<textarea class="required form-control input-block-level short-textarea" id="quick-contact-form-message" name="quick-contact-form-message" rows="4" cols="30" placeholder="Message"></textarea>
-									<input type="text" class="d-none" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
-									<input type="hidden" name="prefix" value="quick-contact-form-">
-									<button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="btn m-0" style='background:#D90416;color:white' value="submit">Send Email</button>
+									<textarea class="form-control input-block-level short-textarea" rows="4" cols="30" placeholder="Message" required></textarea>
+									<button type="submit" class="btn m-0" style='background:#D90416;color:white' >Send Email</button>
 								</form>
 							</div>
 						</div>
@@ -80,4 +73,13 @@ Contact
 				</div>
 			</div>
     </div>
+@endsection
+@section('scripts')
+<script>
+	const button = document.querySelector('#quick-contact-form-submit');
+	button.addEventListener('click',()=>{
+			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <span class="sr-only">Loading...</span>`
+	})
+</script>
 @endsection

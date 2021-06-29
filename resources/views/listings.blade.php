@@ -25,22 +25,26 @@ Search Results
         <input
           type="text"
           name="keyword"
+          id="widget-subscribe-form-email"
           class="form-control form-control-lg not-dark "
           placeholder="Enter City or Zip... "
           style="border: 0; box-shadow: none; overflow: hidden"
           required
         />
-        <input
+        <button
           class="button"
           type="submit"
+          id="submit-btn"
           style="border-radius: 3px"
-          value='Search'
-        />
+        >
+        Search
+      </button>
       </div>
     </form>
 
   </div>
 </div>
+<h4 class="d-none text-center" id="loading"></h4>
 <div class="container">
   <div class="row justify-content-center mb-5">
     @forelse($listings as $listing)
@@ -68,4 +72,28 @@ Search Results
     @endforelse
   </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+	const button = document.querySelector('#submit-btn');
+	const searchText = document.querySelector('#widget-subscribe-form-email');
+  const cards = document.querySelectorAll('.stretched-link');
+  const loading = document.querySelector('#loading');
+	button.addEventListener('click',()=>{
+		if(searchText.value!==''){
+			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Loading...</span>`
+			searchText.setAttribute('readonly',true);
+		}
+	})
+  cards.forEach(card=>card.addEventListener('click',()=>{
+    loading.innerHTML=`
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Loading...</span>
+    `
+    loading.setAttribute('class','d-block text-center');
+
+  }))
+</script>
+
 @endsection
