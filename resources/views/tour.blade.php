@@ -32,6 +32,7 @@
 						type="date"
 						class="sm-form-control required"
 						name="date"
+						id="date"
 						placeholder="Pick a date"
 						required
 					/>
@@ -45,6 +46,7 @@
 						type="time"
 						class="sm-form-control"
 						name="time"
+						id="time"
 						placeholder="Pick a time"
 						required
 					/>
@@ -54,8 +56,7 @@
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label class="nott">Tour Style <small>*</small></label>
-					<select name="style" class="form-select" id="">
-						<option disabled selected>Click to Choose...</option>
+					<select name="style" class="form-select" id="style">
 						<option value="In Person">Tour In Person</option>
 						<option value="Video Call">Tour In Video Chat</option>
 					</select>
@@ -71,6 +72,7 @@
 						type="text"
 						class="sm-form-control required"
 						name="name"
+						id="name"
 						placeholder="Enter Full Name"
 						required
 					/>
@@ -96,6 +98,7 @@
 						type="email"
 						class="sm-form-control"
 						name="email"
+						id="email"
 						placeholder="Enter Email Address"
 						required
 					/>
@@ -110,7 +113,9 @@
 						type="text"
 						class="sm-form-control"
 						name="phone"
+						id="phone"
 						placeholder="Enter Phone Number"
+						required
 					/>
 				</div>
 			</div>
@@ -121,8 +126,8 @@
 				>
 				<textarea
 					class="required sm-form-control"
-					id="template-contactform-message"
 					name="note"
+					id="note"
 					rows="6"
 					cols="30"
 					placeholder="Anything else you want to say?"
@@ -153,10 +158,21 @@
 @endsection
 @section('scripts')
 <script>
-	const button = document.querySelector('#confirm-tour');
-	button.addEventListener('click',()=>{
+		const button = document.querySelector('#confirm-tour');
+		const name = document.querySelector('#name');
+		const email = document.querySelector('#email');
+		const phone = document.querySelector('#phone');
+		const date = document.querySelector('#date');
+		const time = document.querySelector('#time');
+		const note = document.querySelector('#note');
+		button.addEventListener('click',()=>{
+			if(name.value!=='' && email.value!==''&&phone.value!==''&&date.value!==''&&time.value!==''){
+			const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			if(re.test(email.value)){	
 			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  <span class="sr-only">Loading...</span>`
-	})
+				<span class="sr-only">Loading...</span>`
+		}
+	}
+});
 </script>
 @endsection
