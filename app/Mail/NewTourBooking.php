@@ -22,7 +22,7 @@ class NewTourBooking extends Mailable
     {
         $address = 'system@hamrorealty.io';	//this is what user will see mail is from
 	    $name = 'System';		//user will see this as sender
-	    $subject = 'New Tour Boking';
+	    $subject = 'New Tour Booking';
         return $this->markdown('email.newTourBooking')
             ->from($address,$name)
             ->subject($subject)
