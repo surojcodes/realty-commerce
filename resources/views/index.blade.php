@@ -40,7 +40,7 @@
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
 					@endif
-						@if(session('success'))	
+					@if(session('success'))	
 					<div class="alert alert-dismissible fade show" style='background:#22D172;color:white' role="alert">
 						<strong> <i class="icon-check-double"></i></strong> {{session('success')}}. 
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

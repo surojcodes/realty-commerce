@@ -23,7 +23,7 @@ Contact
 						<div class="col-lg-6">
 							<div class="widget clearfix">
                 <h3 style='color:#d90416;text-transform: uppercase'>Hamro Realty</h3>
-								<div class="py-2" style="background: url('images/world-map.png') no-repeat center center;">
+								<div class="py-2">
 									<div class="row col-mb-30">
 										<div class="col-6">
 											<address class="mb-0">
@@ -52,20 +52,24 @@ Contact
 							</div>
 						</div>
 						<div class="col-sm-11 col-lg-6">
-							<div class="widget quick-contact-widget form-widget clearfix">
+							<div class="quick-contact-widget clearfix">
 								<h4>Send Message</h4>
-								<div class="form-result"></div>
-								<form action="#" method="POST" class="mb-0">
-									<div class="input-group mx-auto">
+								<form action="{{route('contact.email')}}" method="POST" class="mb-0">
+									@csrf
+									<div class="input-group mx-auto my-2">
 										<div class="input-group-text"><i class="icon-user"></i></div>
-										<input type="text" class="form-control" placeholder="Full Name" required/>
+										<input type="text" class="form-control" name='name' id='name' placeholder="Full Name" required/>
 									</div>
-									<div class="input-group mx-auto">
+									<div class="input-group mx-auto my-2">
 										<div class="input-group-text"><i class="icon-email2"></i></div>
-										<input type="email" class="form-control"  placeholder="Email Address" required/>
+										<input type="email" class="form-control" name='email' id='email'  placeholder="Email Address" required/>
 									</div>
-									<textarea class="form-control input-block-level short-textarea" rows="4" cols="30" placeholder="Message" required></textarea>
-									<button type="submit" class="btn m-0" style='background:#D90416;color:white' >Send Email</button>
+									<div class="input-group mx-auto my-2">
+										<div class="input-group-text"><i class="icon-phone1"></i></div>
+										<input type="text" class="form-control" name='phone' id='phone'  placeholder="Phone Number" required/>
+									</div>
+									<textarea class="form-control input-block-level short-textarea" rows="4" cols="30" name="message" id="message" placeholder="Message" required></textarea>
+									<button type="submit" class="btn my-2" id="contact-button" style='background:#D90416;color:white'>Send Email</button>
 								</form>
 							</div>
 						</div>
@@ -76,10 +80,20 @@ Contact
 @endsection
 @section('scripts')
 <script>
-	const button = document.querySelector('#quick-contact-form-submit');
+	const button = document.querySelector('#contact-button');
+	const name = document.querySelector('#name');
+	const email = document.querySelector('#email');
+	const phone = document.querySelector('#phone');
+	const message = document.querySelector('#message');
+
 	button.addEventListener('click',()=>{
-			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-  <span class="sr-only">Loading...</span>`
+		if(name.value!=='' && email.value!==''&&phone.value!==''&&message.value!==''){
+		const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if(re.test(email.value)){	
+		 button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  		<span class="sr-only">Loading...</span>`
+		}
+	}
 	})
 </script>
 @endsection
