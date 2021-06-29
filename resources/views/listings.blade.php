@@ -3,16 +3,21 @@
 Search Results
 @endsection
 @section('content')
-<div class="container pt-5">
+<div class="container pt-3">
     <div class="heading-block center border-bottom-0">
-    <h2 class="ls2 fw-bold">
+    <h2 class="ls2 fw-bold pb-2">
       <span style="border-bottom: 5px solid #d90416; color: black"
         >Results For : 
       </span>
       <span>{{$keyword}}</span>
     </h2>
     <small class="mt-2">Total Results:{{$totalMatchedListing}}</small>
-
+    @if(session('success'))	
+      <div class="alert alert-dismissible fade show" style='background:#22D172;color:white' role="alert">
+        <strong> <i class="icon-check-double"></i></strong> {{session('success')}}. 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
     <form
       id="widget-subscribe-form"
       action="{{route('search.property')}}"
@@ -53,7 +58,7 @@ Search Results
           <div style="max-height:197px;overflow:hidden;">
             <img src="{{$listing['photo']}}" class="card-img-top" alt="...">
           </div>
-          <div class="card-body">
+          <div class="card-body pb-1">
             {{-- <span class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">Premium</span> --}}
             <h4 class="mb-0 h4 fw-semibold">$ {{ number_format($listing['info']['ListPrice'],2)}}</h4>
             <p class="mb-4 op-07" style="line-height: 1.65">{{$listing['info']['StreetNumber']}} {{$listing['info']['StreetName']}} {{$listing['info']['StreetSuffix']}}, {{$listing['info']['City']}}, {{$listing['info']['PostalCode']}}</p>
@@ -66,6 +71,16 @@ Search Results
           </div>
           <a href="{{route('property.single',$listing['info']['Matrix_Unique_ID'])}}" class="stretched-link"></a>
         </div>
+        {{-- <div class="text-center">
+        <form action="{{route('add.cart')}}" method="POST">
+          @csrf
+          <input type="text" name="matrix_id" value="{{$listing['info']['Matrix_Unique_ID']}}" hidden>
+          <input type="text" name="property" value="{{$listing['info']['StreetNumber']}} {{$listing['info']['StreetName']}} {{$listing['info']['StreetSuffix']}}, {{$listing['info']['City']}}, {{$listing['info']['PostalCode']}}" hidden>
+          <input type="text" name="image" value="{{$listing['photo']}}" hidden>
+          <input type="text" name="price" value="{{$listing['info']['ListPrice']}}" hidden>
+          <input type="submit" value="Add To Cart" class="button button-rounded w-100 m-0" style="background: #242424">
+        </form>
+        </div> --}}
       </div>
     @empty
       <h3>Sorry! No results for {{$keyword}}</h3>

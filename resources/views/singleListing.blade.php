@@ -106,19 +106,46 @@ Single Property
 									</ul>
 								</div>
 							</div>
-
 						</div>
 						<div class="sidebar sticky-sidebar-wrap col-lg-4" style="margin-bottom: 5rem;">
 							<div class="sidebar-widgets-wrap">
 								<div class="sticky-sidebar">
 										<div class="card bg-light">
-											<div class="card-header">Go tour this home</div>
+											<div class="card-header">Tour this home</div>
 											<div class="card-body">
+												@php $found=0; @endphp
+												@if(session('properties'))
+													@foreach(session('properties') as $property)
+														@php
+															if($property['matrix_id']==$data['Matrix_Unique_ID'])		
+																$found=1;
+														@endphp
+													@endforeach
+												@endif
 												<div class="form-result"></div>
 												@php
 													$property =  $data['StreetNumber'].' '.$data['StreetName'].' '.$data['StreetSuffix'].', '. $data['City'].', '. $data['PostalCode'];														
 												@endphp
-													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}" class="button  button-rounded w-100 m-0" id="schedule-tour" >Schedule Tour</a>
+												@if(session('success') || $found==1)	
+													<div class="text-center">
+														<p style="color:#242424" class="mb-0" ><strong>Added To Cart!</strong></p>
+														<button href="#" class="button button-rounded" style="background:#242424" onclick="goBack()">Go Back</button>
+													</div>
+												@else
+												<form action="/add-cart" method="POST">
+													@csrf
+													<input type="text" name="matrix_id" value="{{$data['Matrix_Unique_ID']}}" hidden>
+													<input type="text" name="property" value="{{$property}}" hidden>
+													<input type="text" name="image" value="{{$photos[3]}}" hidden>
+													<input type="text" name="price" value="{{$data['ListPrice']}}" hidden>
+													<button type="submit"  class="button button-rounded w-100 m-0" id='cartAdd' style="background: #242424">
+														Add To Cart
+													</button>
+												</form>
+												@endif
+													<div class="text-center">
+													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}" class="button button-rounded w-100 m-0" id="schedule-tour" >Schedule Tour</a>
+													</div>
                           <p class="mt-3 mb-1" style="font-size: 0.8rem;">Its free, with no obligation - cancel anytime</p>
 											</div>
 										</div>
@@ -133,10 +160,21 @@ Single Property
 @endsection
 @section('scripts')
 <script>
+	const goBack=()=>{
+		window.history.go(-2);
+	}
 	const button = document.querySelector('#schedule-tour');
 	button.addEventListener('click',()=>{
 			button.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   <span class="sr-only">Loading...</span>`
 	})
+	const cartAdd = document.querySelector('#cartAdd');
+	if(cartAdd){
+		cartAdd.addEventListener('click',()=>{
+				cartAdd.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+		<span class="sr-only">Adding...</span>`
+		})
+	}
+	
 </script>
 @endsection
