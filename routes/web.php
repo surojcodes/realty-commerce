@@ -20,6 +20,7 @@ Route::get('/schedule-tour/{id}/{property}',[TourController::class,'scheduleTour
 Route::post('/confirm-tour',[TourController::class,'confirmTour'])->name('confirm.tour');
 
 Route::post('/add-cart',[CartController::class,'addToCart'])->name('add.cart');
+Route::get('/delete-item/{id}',[CartController::class,'removeItem']);
 Route::get('/cart',[CartController::class,'getCart']);
 Route::get('/clear-cart',[CartController::class,'clearCart']);
 

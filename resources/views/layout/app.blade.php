@@ -114,6 +114,11 @@
 									>
 										<a class="menu-link" href="/contact"><div>Contact</div></a>
 									</li>
+										<li
+										class="{{ (request()->is('cart')) ? 'menu-item current' : 'menu-item' }}"
+									>
+										<a class="menu-link" href="/cart"><div>Cart</div></a>
+									</li>
 								</ul>
 							</nav>
 						</div>
