@@ -142,9 +142,12 @@
 							<div class="team-content">
 								<p>
 									Carbon emissions reductions giving, legitimize amplify
-									non-partisan Aga Khan. Policy dialogue assessment expert
-									free-speech cornerstone disruptor freedom. Cesar Chavez
-									empower.
+									non-partisan Aga Khan. Policy diedom. Cesar Chavez
+									empower. <br>
+									<strong>
+										TREC Company #<span style='color:#d90416'> 9009620</span> <br>
+										TREC License #<span style='color:#d90416'> 671318</span>
+									</strong>
 								</p>
 							</div>
 							<div class="d-flex justify-content-center my-2">
@@ -186,10 +189,11 @@
 							<div class="team-content">
 								<p>
 									Carbon emissions reductions giving, legitimize amplify
-									non-partisan Aga Khan. Policy dialogue assessment expert
-									free-speech cornerstone disruptor freedom. Cesar Chavez
-									empower.
+									non-partisan Aga Khan. Policy dedom. Cesar Chavez
+									empower. <br>
+									<strong>TREC License # <span style='color:#d90416'>687441</span></strong>
 								</p>
+								
 							</div>
 							<div class="d-flex justify-content-center">
 								<a href="#" class="social-icon si-rounded si-small si-facebook">
