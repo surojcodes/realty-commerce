@@ -53,8 +53,8 @@ Cart
             </td>
           </tr>
           @empty
-            <tr>
-              <td>No items in cart.</td>
+            <tr class="text-center">
+              <td colspan="4">No items in cart.</td>
             </tr>
           @endforelse
           <tr class="cart_item">
@@ -62,9 +62,12 @@ Cart
               <div class="row justify-content-between py-2 col-mb-30">
                 <div class="col-lg-auto ps-lg-0">
                 </div>
+                @if($count>0)
                 <div class="col-lg-auto pe-lg-0">
-                  <a href="shop.html" class="button button-3d mt-2 mt-sm-0 me-0" style="background:#242424">Schedule Tour For Cart Properties</a> <br>
+									<a href="/clear-cart" id='clear-cart' class="button button-3d m-0">Clear Cart</a>
+                  <a href="/schedule-cart" class="button button-3d mt-2 mt-sm-0 me-0" id='schedule-cart' style="background:#242424">Schedule Tour For Cart Properties</a> <br>
                 </div>
+                @endif
               </div>
             </td>
           </tr>
@@ -78,8 +81,9 @@ Cart
 <script>
   const images = document.querySelectorAll('.prop-image');
   const bins = document.querySelectorAll('.remove');
-
   const loading = document.querySelector('#loading');
+  const clearBtn = document.querySelector('#clear-cart');
+  const scheduleBtn = document.querySelector('#schedule-cart');
 
   images.forEach(image=>image.addEventListener('click',()=>{
     loading.innerHTML=`
@@ -95,6 +99,19 @@ Cart
     `
     loading.setAttribute('class','d-block text-center my-2');
   }))
+
+  if(clearBtn){
+		clearBtn.addEventListener('click',()=>{
+				clearBtn.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+		<span class="sr-only">Clearing...</span>`
+		})
+	}
+  if(scheduleBtn){
+		scheduleBtn.addEventListener('click',()=>{
+				scheduleBtn.innerHTML=` <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+		<span class="sr-only">Loading...</span>`
+		})
+	}
 </script>
 
 @endsection

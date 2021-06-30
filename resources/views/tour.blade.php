@@ -21,8 +21,18 @@
 			<h4 class="text-center">
 				<span style="border-bottom: 2px solid #d90416">Tour Information</span>
 			</h4>
-			<h5>Property: &nbsp;{{$property}}</h5>
-
+			<h5>Properties:</h5>
+			<ol class="list-group list-group-numbered mb-4">
+			
+				@foreach($items as $item)
+				<li class="list-group-item d-flex justify-content-between align-items-start">
+					<div class="ms-2 me-auto">
+						<div class="fw-bold">{{$item['property']}}</div>
+					 ${{ number_format($item['price'],2)}}
+					</div>
+				</li>
+			@endforeach
+			</ol>
 			<div class="row">
 				<div class="col-md-6 form-group">
 					<label class="nott"
@@ -77,19 +87,21 @@
 						required
 					/>
 				</div>
-        <input
+				@php
+						$properties = json_encode($items);
+				@endphp
+        	<input
 						type="text"
-						name="matrix_id"
-            value="{{$id}}"
+						name="items"
+            value="{{$properties}}"
 						hidden
 					/>
-					 <input
-						type="text"
-						name="property"
-            value="{{$property}}"
-						hidden
-					/>
-
+						<input
+							type="text"
+							name="fromCart"
+							value="{{Request::path()}}"
+							hidden
+						/>
 				<div class="col-md-6 form-group">
 					<label class="nott" for="template-contactform-email"
 						>Email <small>*</small></label

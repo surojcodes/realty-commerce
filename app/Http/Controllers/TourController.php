@@ -10,12 +10,19 @@ use App\Mail\BookingConfirmation;
 
 class TourController extends Controller
 {
-    public function scheduleTour($id,$property){
-        return view('tour',compact('property','id'));
+    public function scheduleTour($id,$property,$price){
+        $items = [];
+        $toPush = [
+            'property'=>$property,
+            'matrix_id'=>$id,
+            'price'=>$price,
+        ];
+        array_push($items,$toPush);
+        return view('tour',compact('items'));
     }
     public function confirmTour(Request $req){
         $data = [
-            'url' => 'http://localhost:8000/property/'.$req->matrix_id,
+            // 'url' => 'http://localhost:8000/property/'.$req->matrix_id,
             'date' => $req->date,
             'time' => $req->time,
             'style' => $req->style,
@@ -23,8 +30,12 @@ class TourController extends Controller
             'email' => $req->email,
             'phone' => $req->phone,
             'note' => $req->note,
-            'property'=>$req->property,
+            'properties'=>json_decode($req->items) 
         ];
+        $fromCart = $req->fromCart;
+        if($fromCart=='schedule-cart'){
+             $req->session()->flush();
+        }
         Mail::to('tours@hamrorealty.com')->send(new NewTourBooking($data));
         $this->sendConfirmation($req->email,$data);
         return redirect()->route('index')->with('success','Tour confirmed! Please check your email for confirmation email.');

@@ -7,8 +7,6 @@ Your tour booking has been confirmed.
 
 **Tour Details:**
 
-Property: {{$data['property']}}
-
 Tour Date: {{$data['date']}}
 
 Tour Time: {{$data['time']}}
@@ -17,16 +15,18 @@ Tour Style: {{$data['style']}}
 
 Note: {{$data['note']==''?'N/A':$data['note']}}
 
+
+**Properties:** 
+@foreach ($data['properties'] as $property)
+1. [{{$property->property}}](http://localhost:8000/property/{{$property->matrix_id}})
+@endforeach
+
+
 **Your Details:**
 
 Email: {{$data['email']}}
 
 Phone: {{$data['phone']}}
-
-
-@component('mail::button',['url'=>$data['url']])
-View Property Detail
-@endcomponent
 
 @component('mail::button',['url'=>'http://localhost:8000/contact'])
 Contact Us

@@ -11,9 +11,6 @@ Email: {{$data['email']}}
 Phone: {{$data['phone']}}
 
 **Tour Details:**
-
-Property: {{$data['property']}}
-
 Tour Date: {{$data['date']}}
 
 Tour Time: {{$data['time']}}
@@ -22,8 +19,10 @@ Tour Style: {{$data['style']}}
 
 Note: {{$data['note']==''?'N/A':$data['note']}}
 
-@component('mail::button',['url'=>$data['url']])
-View Property Detail
-@endcomponent
+**Properties:** 
+@foreach ($data['properties'] as $property)
+1. [{{$property->property}}](http://localhost:8000/property/{{$property->matrix_id}})
+@endforeach
+
 
 @endcomponent

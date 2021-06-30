@@ -144,7 +144,7 @@ Single Property
 												</form>
 												@endif
 													<div class="text-center">
-													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}" class="button button-rounded w-100 m-0" id="schedule-tour" >Schedule Tour</a>
+													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}/{{$data['ListPrice']}}" class="button button-rounded w-100 m-0" id="schedule-tour" >Schedule Tour</a>
 													</div>
                           <p class="mt-3 mb-1" style="font-size: 0.8rem;">Its free, with no obligation - cancel anytime</p>
 											</div>

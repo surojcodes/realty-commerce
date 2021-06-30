@@ -30,12 +30,16 @@ class CartController extends Controller
         return back()->with('success','Property '.$removed.' Removed From Cart');
     }
     public function getCart(Request $req){
-        $items = $req->session()->all()['properties'];
+        $items = $req->session()->all()['properties']??[];
         $count = count($items);
         return view('cart',compact('items','count'));
     }
     public function clearCart(Request $req){
         $req->session()->flush();
-        return 'Deleted';
+        return back()->with('success','Cart Cleared');
+    }
+    public function scheduleCart(Request $req){
+        $items = $req->session()->all()['properties']??[];
+        return view('tour',compact('items'));
     }
 }
