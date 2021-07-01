@@ -64,8 +64,17 @@ Search Results
             <p class="mb-4 op-07" style="line-height: 1.65">{{$listing['info']['StreetNumber']}} {{$listing['info']['StreetName']}} {{$listing['info']['StreetSuffix']}}, {{$listing['info']['City']}}, {{$listing['info']['PostalCode']}}</p>
             <small class="ls2 fw-bold text-uppercase op-05 mb-2 d-block">Features</small>
             <div class="row g-0 mb-2 clearfix car-features">
+              @php
+                  $baths = $listing['info']['BathsTotal']??'N/A';
+                  if($baths!='N/A'){
+                    $after = (float)$baths -(float)$baths%10;
+                    if(abs(($after-0.1)/0.1)<0.00001){
+                      $baths = ($baths%10) + 0.5;
+                    } 
+                  }
+              @endphp
               <div class="col-6 mb-2"><i class="icon-bed"></i> {{$listing['info']['BedsTotal']==''?'N/A':$listing['info']['BedsTotal']}}</div>
-              <div class="col-6 mb-2"><i class="icon-bath"></i> {{$listing['info']['BathsTotal']==''?'N/A':$listing['info']['BathsTotal']}}</div>
+              <div class="col-6 mb-2"><i class="icon-bath"></i> {{$baths}}</div>
               <div class="col-12"></i>{{$listing['info']['LotSizeAreaSQFT']==''?'N/A':$listing['info']['LotSizeAreaSQFT']}} Sq. Ft.</div>
             </div>
           </div>
