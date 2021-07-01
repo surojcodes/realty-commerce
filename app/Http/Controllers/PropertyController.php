@@ -58,7 +58,6 @@ class PropertyController extends Controller
         // dd($listings[0]);
         return view('listings',compact('totalMatchedListing','listings','keyword'));
     }
-
     public function singleProperty($id){
         $resource='Property';
         $class = 'Listing';
@@ -74,6 +73,58 @@ class PropertyController extends Controller
             array_push($photos,$image->getLocation());
         }
         return view('singleListing',compact('data','photos'));
+    }
+    public function filterByPrice(Request $req,$keyword){
+        $keyword = $req->keyword;
+        $resource='Property';
+        $class = 'Listing';
+        $totalMatchedListing=0;
+
+        $min = (double)$req->min;
+        $max = (double)$req->max;
+        $price = "(LISTPRICE=$min-$max)";
+        // dd($price);
+        if($min!=0 && $max==0)
+            $price = '(LISTPRICE='.$min.'+)';
+        if($max!=0 && $min>$max){
+            return view('listings',compact('totalMatchedListing','keyword','max','min'))->with('error','Max value cannot be less than min value.');
+        }
+
+        if(is_numeric($keyword)){
+            $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(POSTALCODE='.$keyword.'),(STATUS=A),'.$price,[
+                'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
+            ]);
+            if($results->getReturnedResultsCount()<2){
+                  return redirect()->route('index')->with('error','Properties for zip "'.$keyword.'" NOT FOUND!');
+            }
+            $totalMatchedListing=$results->getTotalResultsCount();
+        }else{
+           $cityCode = $this->getCityCode($keyword);
+            if($cityCode>0){
+                $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(CITY='.$cityCode.'),(STATUS=A)'.$price,[
+                'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
+            ]);
+            }else{
+                return redirect()->route('index')->with('error','City "'.$keyword.'" NOT FOUND!');
+            }
+            $totalMatchedListing=$results->getTotalResultsCount();
+        }
+
+        $results = $this->fieldRename($results);
+
+        $listings=[];
+
+        foreach($results as $result){
+            $id = $result['Matrix_Unique_ID'];
+            $photo = $this->rets->getObject('Property','Photo',$id,'1',1)[0];
+            $toPush=[
+                'info'=>$result,
+                'photo'=>$photo->getLocation()
+            ];
+            array_push($listings,$toPush);
+        }
+        // dd($listings[0]);
+        return view('listings',compact('totalMatchedListing','listings','keyword','max','min'));
     }
     private function fieldRename($oldArray){
         // For each item in the array rename the keys
@@ -2646,4 +2697,5 @@ class PropertyController extends Controller
             return $cityCodes[$cityName];
         else return 0;
     }
+
 }
