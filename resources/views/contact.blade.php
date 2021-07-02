@@ -37,18 +37,18 @@ Contact
 										</div>
 									</div>
 								</div>
-								<a href="#" class="social-icon si-small si-rounded topmargin-sm si-facebook">
+								<a href="https://www.facebook.com/HamroRealtyCompany" class="social-icon si-small si-rounded topmargin-sm si-facebook">
 									<i class="icon-facebook"></i>
 									<i class="icon-facebook"></i>
 								</a>
-								<a href="#" class="social-icon si-small si-rounded topmargin-sm si-twitter">
+								{{-- <a href="#" class="social-icon si-small si-rounded topmargin-sm si-twitter">
 									<i class="icon-twitter"></i>
 									<i class="icon-twitter"></i>
 								</a>
 								<a href="#" class="social-icon si-small si-rounded topmargin-sm si-linkedin">
 									<i class="icon-linkedin"></i>
 									<i class="icon-linkedin"></i>
-								</a>
+								</a> --}}
 							</div>
 						</div>
 						<div class="col-sm-11 col-lg-6">

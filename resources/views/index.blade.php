@@ -80,6 +80,24 @@
 	</div>
 </section>
 
+<div class="row pt-5 bg-light">
+		<div class="col-lg-6 col-md-8 mx-auto text-center">
+			<p class="lead">	<strong>		Texas Law requires that all the real estate licensees provide the attached information about the brokerage services to prospective buyers, tenants, sellers and landlords
+</strong></p>
+			<p>
+					<a class="button button-rounded button-large m-0" href="{{asset('storage/info.pdf')}}">
+			Click here to view
+		</a> <br> <br>
+		<a
+			href="https://drive.google.com/file/d/1VcDEbaq2WF1i3VhjfZqZTRzDN2rsAskV/view"
+			><small
+				>Consumer Complaint Against a License Holder to
+				TREC</small
+			></a
+		>
+			</p>
+		</div>
+</div>
 <section id="content">
 	<div class="content-wrap pt-0 pb-0 clearfix">
 		<div class="container topmargin-lg bottommargin-lg clearfix">
@@ -127,7 +145,7 @@
 					<div
 						class="team team-list row align-items-center justify-content-center"
 					>
-						<div class="team-image col-sm-6 mb-3" style="max-width: 320px">
+						<div class="team-image col-sm-6 mb-3" style="max-width: 250px">
 							<img
 								src="{{asset('images/prabin.jpg')}}"
 								alt="Prabin Maharjan"
@@ -139,11 +157,8 @@
 								<h4>Prabin Maharjan</h4>
 								<span>Owner/Broker</span>
 							</div>
-							<div class="team-content">
-								<p>
-									Carbon emissions reductions giving, legitimize amplify
-									non-partisan Aga Khan. Policy diedom. Cesar Chavez
-									empower. <br>
+							<div class="text-center">
+								<p class="mt-4">
 									<strong>
 										TREC Company #<span style='color:#d90416'> 9009620</span> <br>
 										TREC License #<span style='color:#d90416'> 671318</span>
@@ -159,10 +174,10 @@
 									<i class="icon-twitter"></i>
 									<i class="icon-twitter"></i>
 								</a>
-								<a href="#" class="social-icon si-rounded si-small si-gplus">
+								{{-- <a href="#" class="social-icon si-rounded si-small si-gplus">
 									<i class="icon-gplus"></i>
 									<i class="icon-gplus"></i>
-								</a>
+								</a> --}}
 							</div>
 						</div>
 					</div>
@@ -173,7 +188,7 @@
 					>
 						<div
 							class="team-image col-sm-6 text-center mb-3"
-							style="max-width: 320px"
+							style="max-width: 250px"
 						>
 							<img
 								src="{{asset('images/suman.jpg')}}"
@@ -186,14 +201,10 @@
 								<h4>Suman Shrestha</h4>
 								<span>Lead Agent</span>
 							</div>
-							<div class="team-content">
-								<p>
-									Carbon emissions reductions giving, legitimize amplify
-									non-partisan Aga Khan. Policy dedom. Cesar Chavez
-									empower. <br>
+							<div class="text-center">
+								<p class="mt-4">
 									<strong>TREC License # <span style='color:#d90416'>687441</span></strong>
 								</p>
-								
 							</div>
 							<div class="d-flex justify-content-center">
 								<a href="#" class="social-icon si-rounded si-small si-facebook">
@@ -204,10 +215,10 @@
 									<i class="icon-twitter"></i>
 									<i class="icon-twitter"></i>
 								</a>
-								<a href="#" class="social-icon si-rounded si-small si-gplus">
+								{{-- <a href="#" class="social-icon si-rounded si-small si-gplus">
 									<i class="icon-gplus"></i>
 									<i class="icon-gplus"></i>
-								</a>
+								</a> --}}
 							</div>
 						</div>
 					</div>

@@ -160,7 +160,7 @@
 									>
 								</div>
 								<a
-									href="#"
+									href="https://www.facebook.com/HamroRealtyCompany"
 									class="
 										social-icon
 										inline-block
@@ -173,7 +173,7 @@
 									<i class="icon-facebook"></i>
 								</a>
 
-								<a
+								{{-- <a
 									href="#"
 									class="
 										social-icon
@@ -198,7 +198,7 @@
 								>
 									<i class="icon-linkedin"></i>
 									<i class="icon-linkedin"></i>
-								</a>
+								</a> --}}
 							</div>
 						</div>
 						<p class="text-center m-0">Copyrights &copy; 2021 Hamro Realty.</p>
