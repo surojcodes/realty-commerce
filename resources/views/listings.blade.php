@@ -11,9 +11,9 @@ Search Results
       </span>
       <span>{{$keyword}}</span>
     </h2>
-    @if($min||$max)
-    <h4> <span style="color:#d90416"> Filter</span>(Price Range) : ${{number_format($min,2)}} to ${{$max==0?'-': number_format($max,2)}}</h4>
-    @endif
+    @isset($min)
+      <h4> <span style="color:#d90416"> Filter</span>(Price Range) : ${{number_format($min,2)}} to ${{$max==0?'-': number_format($max,2)}}</h4>
+    @endisset
     <small class="mt-2">Total Results:{{$totalMatchedListing}}</small>
     @if(session('success'))	
       <div class="alert alert-dismissible fade show" style='background:#22D172;color:white' role="alert">
@@ -41,7 +41,7 @@ Search Results
           name="keyword"
           id="widget-subscribe-form-email"
           class="form-control form-control-lg not-dark "
-          placeholder="Enter City or Zip... "
+          placeholder="Enter City,Zip,Street Address(e.g. 1111 Glenn Dr) "
           style="border: 0; box-shadow: none; overflow: hidden"
           required
         />

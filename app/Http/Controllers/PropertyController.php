@@ -26,12 +26,22 @@ class PropertyController extends Controller
             $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(POSTALCODE='.$keyword.'),(STATUS=A)',[
                 'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
             ]);
-            if($results->getReturnedResultsCount()<2){
+            if($results->getReturnedResultsCount()<1){
                   return redirect()->route('index')->with('error','Properties for zip "'.$keyword.'" NOT FOUND!');
             }
             $totalMatchedListing=$results->getTotalResultsCount();
         }else{
-           $cityCode = $this->getCityCode($keyword);
+           $street = explode(' ',$keyword,3);
+           if(is_numeric($street[0])){
+            $results = $this->rets->Search($resource, $class, '(STREETNUMBER='.(int)$street[0].'),(STREETNAME=*'.trim($street[1]).'*)',[
+                'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
+            ]);
+            if($results->getReturnedResultsCount()<1){
+                  return redirect()->route('index')->with('error','Properties for Street "'.$keyword.'" NOT FOUND!');
+            }
+            $totalMatchedListing=$results->getTotalResultsCount();
+           }else{
+            $cityCode = $this->getCityCode($keyword);
             if($cityCode>0){
                 $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(CITY='.$cityCode.'),(STATUS=A)',[
                 'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
@@ -40,6 +50,7 @@ class PropertyController extends Controller
                 return redirect()->route('index')->with('error','City "'.$keyword.'" NOT FOUND!');
             }
             $totalMatchedListing=$results->getTotalResultsCount();
+           }
         }
 
         $results = $this->fieldRename($results);
@@ -99,15 +110,26 @@ class PropertyController extends Controller
             }
             $totalMatchedListing=$results->getTotalResultsCount();
         }else{
-           $cityCode = $this->getCityCode($keyword);
+           $street = explode(' ',$keyword,3);
+           if(is_numeric($street[0])){
+            $results = $this->rets->Search($resource, $class, '(STREETNUMBER='.(int)$street[0].'),(STREETNAME=*'.trim($street[1]).'*),'.$price,[
+                'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
+            ]);
+            if($results->getReturnedResultsCount()<1){
+                  return redirect()->route('index')->with('error','Properties for Street "'.$keyword.'" NOT FOUND!');
+            }
+            $totalMatchedListing=$results->getTotalResultsCount();
+           }else{
+            $cityCode = $this->getCityCode($keyword);
             if($cityCode>0){
-                $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(CITY='.$cityCode.'),(STATUS=A)'.$price,[
+                $results = $this->rets->Search($resource, $class, '(PHOTOCOUNT=1+),(CITY='.$cityCode.'),(STATUS=A),'.$price,[
                 'Select'=>'ListPrice,BedsTotal,BathsTotal,LotSizeAreaSQFT,Matrix_Unique_ID,City,PostalCode,StreetNumber,StreetName,StreetSuffix,StateOrProvince'
             ]);
             }else{
                 return redirect()->route('index')->with('error','City "'.$keyword.'" NOT FOUND!');
             }
             $totalMatchedListing=$results->getTotalResultsCount();
+           }
         }
 
         $results = $this->fieldRename($results);

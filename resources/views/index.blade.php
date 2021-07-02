@@ -60,7 +60,7 @@
 									id="widget-subscribe-form-email"
 									name="keyword"
 									class="form-control form-control-lg not-dark "
-									placeholder="Enter City or Zip... "
+									placeholder="Enter City, Zip, Street Address(e.g. 1111 Glenn Dr)... "
 									style="border: 0; box-shadow: none; overflow: hidden"
 									required
 								/>
