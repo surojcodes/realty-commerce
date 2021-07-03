@@ -25,27 +25,34 @@ class DataDownloadController extends Controller
         DB::table('properties')->truncate();
         DB::table('photos')->truncate();
         
-        $resource='Property';
-        $class = 'Listing';
-        $results = $this->rets->Search($resource, $class, '(STATUS=A)',[
-            'Limit' => 100,
-        ]);
-        $results = $this->fieldRename($results);
-
-        foreach($results as $property){
-            $newPrpoerty = Property::create($property);
-            $id = $property['Matrix_Unique_ID'];
-            $images = $this->rets->getObject('Property','HighRes',$id,'*',1);
-            foreach($images as $image){
-                Photo::create([
-                    'property_id'=>$newPrpoerty->id,
-                    'image'=>$image->getLocation()
-                ]);
+        $from = 0;
+        $total=0;
+        while(true){
+            $results = $this->downloadParts($from);
+            
+            if(count($results)==0){
+              break;
+            }else{
+                $results = $this->fieldRename($results);
+    
+                foreach($results as $property){
+                    $newPrpoerty = Property::create($property);
+                    $id = $property['Matrix_Unique_ID'];
+                    $images = $this->rets->getObject('Property','HighRes',$id,'*',1);
+                    foreach($images as $image){
+                        Photo::create([
+                            'property_id'=>$newPrpoerty->id,
+                            'image'=>$image->getLocation()
+                        ]);
+                    }
+                }
+                $total += count($results);
+                echo 'Downloaded Data:'.$total.'<br>';
+                $from = Property::orderBy('Matrix_Unique_ID','Desc')->first()->Matrix_Unique_ID + 1;
+                
             }
         }
-
-        return 'Download Complete';
-
+         return 'Download Completed :)';
     }
     private function FieldRename($oldArray){
         foreach ($oldArray as $arrayData) {
@@ -172,5 +179,14 @@ class DataDownloadController extends Controller
             ];
         }
         return $newArray??[];
+    }
+    private function downloadParts($from){
+          $resource='Property';
+          $class = 'Listing';
+        
+         $results = $this->rets->Search($resource, $class, '(MATRIX_UNIQUE_ID= '.$from.'+),(STATUS=A)',[
+            'Limit' => 20000,
+        ]);
+        return $results;
     }
 }
