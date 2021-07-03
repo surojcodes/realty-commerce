@@ -44,22 +44,20 @@ class PropertyController extends Controller
         // dd($listings);
         return view('listings',compact('totalMatchedListing','listings','keyword'));
     }
-    // public function singleProperty($id){
-    //     $resource='Property';
-    //     $class = 'Listing';
-    //     $results = 
-    //     if($results->getReturnedResultsCount()==0){
-    //             abort(404);
-    //     }
-    //     $data = $this->completeFieldRename($results)[0];
-    //     $id = $data['Matrix_Unique_ID'];
-    //     $images = 
-    //     $photos =[];
-    //     foreach($images as $image){
-    //         array_push($photos,$image->getLocation());
-    //     }
-    //     return view('singleListing',compact('data','photos'));
-    // }
+    public function singleProperty($id){
+        $resource='Property';
+        $class = 'Listing';
+        $data = Property::where('Matrix_Unique_ID',$id)->first();
+        if(!$data){
+            abort(404);
+        }
+        $images = $data->photos;
+        $photos =[];
+        foreach($images as $image){
+            array_push($photos,$image->image);
+        }
+        return view('singleListing',compact('data','photos'));
+    }
     public function filterByPrice(Request $req,$keyword){
         $keyword = $req->keyword;
         $totalMatchedListing=0;
