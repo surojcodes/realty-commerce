@@ -184,25 +184,28 @@ Search Results
         </div>
       </div>
     </div>
-
 </div>
 <h4 class="d-none text-center" id="loading"></h4>
 <div class="container">
   <div class="row justify-content-center mb-5">
-    @forelse($listings as $listing)
+    
+    @forelse($properties as $property)
+    @php
+        $photo = $property->photos->first()->image;
+    @endphp
       <div class="col-sm-6 col-lg-3 my-3">
         <div class="card shadow-sm">
           <div style="max-height:197px;overflow:hidden;">
-            <img src="{{$listing['photo']}}" class="card-img-top" alt="...">
+            <img src="{{$photo}}" class="card-img-top" alt="...">
           </div>
           <div class="card-body pb-1">
             {{-- <span class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">Premium</span> --}}
-            <h4 class="mb-0 h4 fw-semibold">$ {{ number_format($listing['info']['ListPrice'],2)}}</h4>
-            <p class="mb-4 op-07" style="line-height: 1.65">{{$listing['info']['StreetNumber']}} {{$listing['info']['StreetName']}} {{$listing['info']['StreetSuffix']}}, {{$listing['info']['City']}}, {{$listing['info']['PostalCode']}}</p>
+            <h4 class="mb-0 h4 fw-semibold">$ {{ number_format($property->ListPrice,2)}}</h4>
+            <p class="mb-4 op-07" style="line-height: 1.65">{{$property->StreetNumber}} {{$property->StreetName}} {{$property->StreetSuffix}}, {{$property->City}}, {{$property->PostalCode}}</p>
             <small class="ls2 fw-bold text-uppercase op-05 mb-2 d-block">Features</small>
             <div class="row g-0 mb-2 clearfix car-features">
               @php
-                  $baths = $listing['info']['BathsTotal']??'N/A';
+                  $baths = $property->BathsTotal??'N/A';
                   if($baths!='N/A'){
                     $after = (float)$baths -(float)$baths%10;
                     if(abs(($after-0.1)/0.1)<0.00001){
@@ -210,29 +213,20 @@ Search Results
                     } 
                   }
               @endphp
-              <div class="col-6 mb-2"><i class="icon-bed"></i> {{$listing['info']['BedsTotal']==''?'N/A':$listing['info']['BedsTotal']}}</div>
+              <div class="col-6 mb-2"><i class="icon-bed"></i> {{$property->BedsTotal==''?'N/A':$property->BedsTotal}}</div>
               <div class="col-6 mb-2"><i class="icon-bath"></i> {{$baths}}</div>
-              <div class="col-12"></i>{{$listing['info']['LotSizeAreaSQFT']==''?'N/A':$listing['info']['LotSizeAreaSQFT']}} Sq. Ft.</div>
+              <div class="col-12"></i>{{$property->LotSizeAreaSQFT==''?'N/A':$property->LotSizeAreaSQFT}} Sq. Ft.</div>
             </div>
           </div>
-          <a href="{{route('property.single',$listing['info']['Matrix_Unique_ID'])}}" class="stretched-link"></a>
+          <a href="{{route('property.single',$property->Matrix_Unique_ID)}}" class="stretched-link"></a>
         </div>
-        {{-- <div class="text-center">
-        <form action="{{route('add.cart')}}" method="POST">
-          @csrf
-          <input type="text" name="matrix_id" value="{{$listing['info']['Matrix_Unique_ID']}}" hidden>
-          <input type="text" name="property" value="{{$listing['info']['StreetNumber']}} {{$listing['info']['StreetName']}} {{$listing['info']['StreetSuffix']}}, {{$listing['info']['City']}}, {{$listing['info']['PostalCode']}}" hidden>
-          <input type="text" name="image" value="{{$listing['photo']}}" hidden>
-          <input type="text" name="price" value="{{$listing['info']['ListPrice']}}" hidden>
-          <input type="submit" value="Add To Cart" class="button button-rounded w-100 m-0" style="background: #242424">
-        </form>
-        </div> --}}
-      </div>
+      </div>	
     @empty
-      <h3>Sorry! No results for {{$keyword}}</h3>
+      <h3 class="text-center">Sorry! No results</h3>
     @endforelse
   </div>
 </div>
+
 @endsection
 @section('scripts')
 <script>
