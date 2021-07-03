@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NavigationController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\DataDownloadController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\CartController;
+
+Route::get('/download',[DataDownloadController::class,'download']);
 
 Route::get('/', [NavigationController::class,'index'])->name('index');
 Route::get('/about', [NavigationController::class,'about']);
