@@ -4,56 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Imports\PropertiesImport;
 use App\Models\Photo;
 use DB;
+use Excel;
 
-class DataDownloadController extends Controller
+class DataUploadController extends Controller
 {
-    public function __construct(){
-        $config = new \PHRETS\Configuration;
-
-        $config->setLoginUrl(env('RETS_LOGIN_URL'))
-            ->setUsername(env('RETS_USERNAME'))
-            ->setPassword(env('RETS_PASSWORD'))
-            ->setRetsVersion('1.8');
-
-        $this->rets = new \PHRETS\Session($config);
-        $connect = $this->rets->Login();
+    public function upload(){
+        return view('upload');
     }
-    public function download(){
 
-        DB::table('properties')->truncate();
-        DB::table('photos')->truncate();
-        
-        $from = 0;
-        $total=0;
-        while(true){
-            $results = $this->downloadParts($from);
-            
-            if(count($results)==0){
-              break;
-            }else{
-                $results = $this->fieldRename($results);
+    public function storeData(Request $req){
+         request()->validate([
+            'data'=>['required','mimes:xlsx,xls,csv,ods,odt,odp']
+            ]);
+        Excel::import(new PropertiesImport, request()->file('data'));
+        return redirect('/')->with('success', 'Data uploaded Successfully!');
+    }
     
-                foreach($results as $property){
-                    $newPrpoerty = Property::create($property);
-                    $id = $property['Matrix_Unique_ID'];
-                    $images = $this->rets->getObject('Property','HighRes',$id,'*',1);
-                    foreach($images as $image){
-                        Photo::create([
-                            'property_id'=>$newPrpoerty->id,
-                            'image'=>$image->getLocation()
-                        ]);
-                    }
-                }
-                $total += count($results);
-                echo 'Downloaded Data:'.$total.'<br>';
-                $from = Property::orderBy('Matrix_Unique_ID','Desc')->first()->Matrix_Unique_ID + 1;
-                
-            }
-        }
-         return 'Download Completed :)';
-    }
     private function FieldRename($oldArray){
         foreach ($oldArray as $arrayData) {
             $newArray[] = [
@@ -180,13 +149,5 @@ class DataDownloadController extends Controller
         }
         return $newArray??[];
     }
-    private function downloadParts($from){
-          $resource='Property';
-          $class = 'Listing';
-        
-         $results = $this->rets->Search($resource, $class, '(MATRIX_UNIQUE_ID= '.$from.'+),(STATUS=A)',[
-            'Limit' => 20000,
-        ]);
-        return $results;
-    }
+
 }

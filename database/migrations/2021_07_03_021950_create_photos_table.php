@@ -15,7 +15,7 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->string('property_id');
+            $table->string('Matrix_Unique_ID');
             $table->text('image')->nullable();
             $table->timestamps();
         });
