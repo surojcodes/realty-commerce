@@ -16,16 +16,8 @@ class PropertiesImport implements ToModel, withHeadingRow
     */
     public function model(array $row)
     {
-        if($row['photo_count'] > 0){
-            $locations = explode(',',$row['highres_location']);
-            foreach($locations as $location){
-                Photo::create([
-                    'matrix_unique_id'=>$row['matrix_unique_id'],
-                    'image'=>$location
-                ]);
-            }
-        }
-        return new Property([
+       
+        $property= Property::create([
             'Matrix_Unique_ID'=>$row['matrix_unique_id'],
             'MatrixModifiedDT'=>$row['matrix_modified_dt'],
             'MLS'=>$row['mls'],
@@ -90,5 +82,15 @@ class PropertiesImport implements ToModel, withHeadingRow
             "Country"=>$row['country'],
             "status"=>$row['status'],
         ]);
+         if($row['photo_count'] > 0){
+            $locations = explode(',',$row['highres_location']);
+            foreach($locations as $location){
+                Photo::create([
+                    'property_id'=>$property->id,
+                    'image'=>$location
+                ]);
+            }
+        }
+        return $property;
     }
 }

@@ -10,6 +10,6 @@ class Property extends Model
     use HasFactory;
     protected $guarded = [];
     public function photos(){
-        return $this->hasMany(Photo::class,'Matrix_Unique_ID');
+        return $this->hasMany(Photo::class);
     }
 }

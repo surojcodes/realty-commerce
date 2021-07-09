@@ -191,12 +191,12 @@ Search Results
     
     @forelse($properties as $property)
     @php
-        $photo = $property->photos->first()->image;
+        $photo = $property->photos->first()->image??'na';
     @endphp
       <div class="col-sm-6 col-lg-3 my-3">
         <div class="card shadow-sm">
           <div style="max-height:197px;overflow:hidden;">
-            <img src="{{$photo}}" class="card-img-top" alt="...">
+            <img src="{{$photo}}" class="card-img-top" alt="Image Not Available">
           </div>
           <div class="card-body pb-1">
             {{-- <span class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">Premium</span> --}}

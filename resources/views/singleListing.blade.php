@@ -4,13 +4,13 @@ Single Property
 @endsection
 @section('content')
 <div class="container">
-  <section id="slider" class="slider-element dark " style="background-image: url('{{$photos[0]}}'); background-size: cover; height: 450px; background-position:center center">
+  <section id="slider" class="slider-element dark " style="background-image: url('{{$photos?$photos[0]:'#'}}'); background-size: cover; height: 450px; background-position:center center">
 			<div class="container clearfix" style="z-index: 2;">
 				<div class="real-estate-info-wrap">
 					<div class="heading-block mb-0 border-bottom-0 d-md-flex d-block align-items-center justify-content-around">
 						<h2 class="text-white"> {{$data['StreetNumber']}} {{$data['StreetName']}} {{$data['StreetSuffix']}}, {{$data['City']}}, {{$data['PostalCode']}}</span></h2>
 						<div class="d-flex flex-shrink-1" data-lightbox="gallery">
-							<a href="{{$photos[0]}}" class="button button-color button-rounded nott m-0 fw-medium mx-5" data-lightbox="gallery-item"><i class="icon-picture"></i> View Gallery</a>
+							<a href="{{$photos?$photos[0]:'#'}}" class="button button-color button-rounded nott m-0 fw-medium mx-5" data-lightbox="gallery-item"><i class="icon-picture"></i> View Gallery</a>
 							 @foreach($photos as $photo)
                 <a href="{{$photo}}" class="d-none" data-lightbox="gallery-item"></a>
               @endforeach
@@ -113,6 +113,12 @@ Single Property
 										<div class="card bg-light">
 											<div class="card-header">Tour this home</div>
 											<div class="card-body">
+												
+												@if($data['status']!='Active')
+													<p>Sorry, the property is not active.</p>
+													<span>Status: <span style="color:#d90416">{{$data['status']}}</span></span>
+												@else
+
 												@php $found=0; @endphp
 												@if(session('properties'))
 													@foreach(session('properties') as $property)
@@ -136,7 +142,7 @@ Single Property
 													@csrf
 													<input type="text" name="matrix_id" value="{{$data['Matrix_Unique_ID']}}" hidden>
 													<input type="text" name="property" value="{{$property}}" hidden>
-													<input type="text" name="image" value="{{$photos[0]}}" hidden>
+													<input type="text" name="image" value="{{$photos?$photos[0]:'na'}}" hidden>
 													<input type="text" name="price" value="{{$data['ListPrice']}}" hidden>
 													<button type="submit"  class="button button-rounded w-100 m-0" id='cartAdd' style="background: #242424">
 														Add To Cart
@@ -147,6 +153,8 @@ Single Property
 													<a href="/schedule-tour/{{$data['Matrix_Unique_ID']}}/{{$property}}/{{$data['ListPrice']}}" class="button button-rounded w-100 m-0" id="schedule-tour" >Schedule Tour</a>
 													</div>
                           <p class="mt-3 mb-1" style="font-size: 0.8rem;">Its free, with no obligation - cancel anytime</p>
+
+												@endif
 											</div>
 										</div>
 								</div>

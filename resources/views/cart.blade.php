@@ -41,7 +41,7 @@ Cart
             </td>
 
             <td class="cart-product-thumbnail">
-              <a href="/property/{{$item['matrix_id']}}" class='prop-image'><img width="100" height="100" src="{{$item['image']}}" alt="Prpoerty Image"></a>
+              <a href="/property/{{$item['matrix_id']}}" class='prop-image'><img width="100" height="100" src="{{$item['image']}}" alt="Not Available"></a>
             </td>
 
             <td class="cart-product-name">
