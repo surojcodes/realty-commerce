@@ -49,11 +49,10 @@
 						<form
 							id="widget-subscribe-form"
 							action="{{route('search.property')}}"
-							method="POST"
+							method="GET"
 							class="mb-0"
 							data-animate="fadeInUp"
 						>
-							@csrf
 							<div class="input-group mx-auto">
 								<input
 									type="text"

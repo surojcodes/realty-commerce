@@ -14,10 +14,15 @@ Search Results
     @isset($min)
       <h4> <span style="color:#d90416"> Filter</span>(Price Range) : ${{number_format($min,2)}} to ${{$max==0?'-': number_format($max,2)}}</h4>
     @endisset
-    <small class="mt-2">Total Results:{{$totalMatchedListing}}</small>
     @if(session('success'))	
       <div class="alert alert-dismissible fade show" style='background:#22D172;color:white' role="alert">
         <strong> <i class="icon-check-double"></i></strong> {{session('success')}}. 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+     @isset($error)	
+      <div class="alert alert-dismissible fade show" style='background:#d90416;color:white' role="alert">
+        <strong> <i class="icon-check-double"></i></strong> {{$error}}. 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
@@ -30,11 +35,10 @@ Search Results
     <form
       id="widget-subscribe-form"
       action="{{route('search.property')}}"
-      method="POST"
+      method="GET"
       class="mb-0 mt-4"
       data-animate="fadeInUp"
     >
-      @csrf
       <div class="input-group mx-auto">
         <input
           type="text"
@@ -188,7 +192,6 @@ Search Results
 <h4 class="d-none text-center" id="loading"></h4>
 <div class="container">
   <div class="row justify-content-center mb-5">
-    
     @forelse($properties as $property)
     @php
         $photo = $property->photos->first()->image??'na';
@@ -226,6 +229,11 @@ Search Results
     @endforelse
   </div>
 </div>
+@if( method_exists($properties,'links'))
+<div class="container">
+  {{$properties->appends(Request::all())->links()}}
+</div>			|
+@endif							
 
 @endsection
 @section('scripts')

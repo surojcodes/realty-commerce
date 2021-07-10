@@ -44,7 +44,11 @@
 			type="text/css"
 		/>
 		<link rel="stylesheet" href="{{asset('style.css')}}" type="text/css" />
-
+<style>
+	.pagination{
+		justify-content: center;
+	}
+</style>
 		<title>Hamro Realty | @yield('title')</title>
 	</head>
 
