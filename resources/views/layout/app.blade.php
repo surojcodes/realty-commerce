@@ -3,7 +3,9 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="author" content="SemiColonWeb" />
-
+		<link rel="icon" 
+      type="image/png" 
+      href="{{asset('images/logo.png')}}">
 		<link
 			href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Playfair+Display:700,700i,900&display=swap"
 			rel="stylesheet"
