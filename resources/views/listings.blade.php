@@ -64,8 +64,7 @@ Search Results
   	<div class="row justify-content-center my ">
       <div class="col-md-11 text-center">
         <div class="btn-group">
-          <form action="/filter-price/{{$keyword}}" method="POST">
-            @csrf
+          <form action="/filter-price/{{$keyword}}" method="GET">
             <div class="row justify-content-center align-items-center text-center">
               <div class="col-md-4 ">
                 Filter By Price:

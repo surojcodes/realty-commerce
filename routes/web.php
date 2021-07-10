@@ -17,7 +17,7 @@ Route::post('/contact',[TourController::class,'contactEmail'])->name('contact.em
 
 Route::get('/search-results',[PropertyController::class,'searchProperty'])->name('search.property');
 Route::get('/property/{id}',[PropertyController::class,'singleProperty'])->name('property.single');
-Route::post('/filter-price/{keyword}',[PropertyController::class,'filterByPrice'])->name('filter.price');
+Route::get('/filter-price/{keyword}',[PropertyController::class,'filterByPrice'])->name('filter.price');
 
 Route::get('/schedule-tour/{id}/{property}/{price}',[TourController::class,'scheduleTour'])->name('schedule.tour');
 Route::post('/confirm-tour',[TourController::class,'confirmTour'])->name('confirm.tour');
@@ -27,7 +27,3 @@ Route::get('/delete-item/{id}',[CartController::class,'removeItem']);
 Route::get('/cart',[CartController::class,'getCart']);
 Route::get('/clear-cart',[CartController::class,'clearCart']);
 Route::get('/schedule-cart',[CartController::class,'scheduleCart']);
-
-
-
-
