@@ -76,7 +76,7 @@ class PropertyController extends Controller
                     $properties = Property::where('StreetNumber',$street[0])->where('StreetName','LIKE', '%' . $street[1] . '%')->where('ListPrice','>=',$min)->get();
                 }
             }else
-                $properties = Property::where('StreetNumber',$keyword)->get();
+                $properties = Property::where('StreetNumber',$keyword)->where('StreetName','LIKE', '%' . $street[1] . '%')->get();
             
            } 
         }else if($type=='city'){
