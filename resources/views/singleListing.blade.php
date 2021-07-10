@@ -113,7 +113,6 @@ Single Property
 										<div class="card bg-light">
 											<div class="card-header">Tour this home</div>
 											<div class="card-body">
-												
 												@if($data['status']!='Active')
 													<p>Sorry, the property is not active.</p>
 													<span>Status: <span style="color:#d90416">{{$data['status']}}</span></span>

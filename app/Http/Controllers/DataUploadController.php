@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Property;
 use App\Imports\PropertiesImport;
 use App\Models\Photo;
+use App\Models\User;
 use DB;
 use Excel;
 
@@ -16,8 +18,20 @@ class DataUploadController extends Controller
     }
 
     public function storeData(Request $req){
+
+        $email = $req->email;
+        $pwd = $req->password;
+
+        if($email=='' || $pwd==''){
+            return back()->with('error','Enter both email and password!');
+        }else{
+            $user = User::first();
+            if($email!=$user->email || !Hash::check($pwd, $user->password))
+            return back()->with('error','Invalid Credentials!');
+        }
+
          request()->validate([
-            'data'=>['required','mimes:xlsx,xls,csv,ods,odt,odp']
+            'data'=>['required','mimes:xlsx,xls,csv,ods,odt,odp'],
             ]);
         Excel::import(new PropertiesImport, request()->file('data'));
         return redirect('/')->with('success', 'Data uploaded Successfully!');

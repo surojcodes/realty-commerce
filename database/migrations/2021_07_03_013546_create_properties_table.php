@@ -49,7 +49,7 @@ class CreatePropertiesTable extends Migration
             $table->string("MLSAreaMajor",100)->nullable();
             $table->string("MLSAreaMinor",100)->nullable();
             $table->text("PoolFeatures")->nullable();
-            $table->string("PoolYN",100)->nullable();
+            $table->text("PoolYN")->nullable();
             $table->text("PublicRemarks")->nullable();
             $table->string("SchoolDistrict",100)->nullable();
             $table->text("SecurityFeatures")->nullable();
@@ -60,7 +60,7 @@ class CreatePropertiesTable extends Migration
             $table->string("SQFTLot",100)->nullable();
             $table->text("Utilities")->nullable();
             $table->text("UtilitiesOther")->nullable();
-            $table->string("VirtualTourURLUnbranded",100)->nullable();
+            $table->text("VirtualTourURLUnbranded")->nullable();
             $table->string("YearBuilt",100)->nullable();
             $table->text("DateAvailable")->nullable();
             $table->text("ElementarySchoolName")->nullable();
@@ -70,7 +70,7 @@ class CreatePropertiesTable extends Migration
             $table->string("MiddleSchoolName",100)->nullable();
             $table->string("PrimarySchoolName",100)->nullable();
             $table->string("SeniorHighSchoolName",100)->nullable();
-            $table->string("VirtualTourURLBranded",255)->nullable();
+            $table->text("VirtualTourURLBranded")->nullable();
             $table->text("Country")->nullable();
             $table->text("status")->nullable();
             $table->timestamps();
