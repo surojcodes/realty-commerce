@@ -53,7 +53,7 @@
 			<div class="row">
 				<div>
           <label class="nott">Upload CSV File:</label>
-          <input class="form-control form-control" name="data" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+          <input class="form-control form-control" name="data" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
         </div>
 			</div>
 
