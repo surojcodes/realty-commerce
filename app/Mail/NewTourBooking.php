@@ -20,8 +20,8 @@ class NewTourBooking extends Mailable
 
     public function build()
     {
-        $address = 'system@hamrorealty.io';	//this is what user will see mail is from
-	    $name = 'System';		//user will see this as sender
+        $address = 'admin@hamrorealty.com';
+	    $name = 'Admin';
 	    $subject = 'New Tour Booking';
         return $this->markdown('email.newTourBooking')
             ->from($address,$name)

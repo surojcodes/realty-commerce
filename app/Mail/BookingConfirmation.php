@@ -20,8 +20,8 @@ class BookingConfirmation extends Mailable
 
     public function build()
     {
-        $address = 'tour@hamrorealty.io';	//this is what user will see mail is from
-	    $name = 'Hamro Realty';		//user will see this as sender
+        $address = 'admin@hamrorealty.com';	
+	    $name = 'Admin';
 	    $subject = 'Tour Schedule Confirmation';
         return $this->markdown('email.tourConfirmation')
             ->from($address,$name)

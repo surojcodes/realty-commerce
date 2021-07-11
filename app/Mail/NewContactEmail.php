@@ -20,8 +20,8 @@ class NewContactEmail extends Mailable
 
     public function build()
     {
-        $address = 'system@hamrorealty.io';	//this is what user will see mail is from
-	    $name = 'System';		//user will see this as sender
+        $address = 'admin@hamrorealty.com';	
+	    $name = 'Admin';
 	    $subject = 'Contact Email';
         return $this->markdown('email.newContactEmail')
             ->from($address,$name)
